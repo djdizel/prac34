@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace prac34
 {
-    abstract class Venicle
+    public abstract class Venicle
     {
-        int maxspeed;
-        protected bool NonBellowZero;
-        protected bool OutOfMaxBorder;
-        double price;
-        int year;
+        public double Price { get; set; }
+        public int MaxSpeed { get; set; }
+        public int Year { get; set; }
+        public bool NonBelowZero { get; set; }
+        public bool OutOfMaxBorder { get; set; }
 
-        public int Maxspeed { get => maxspeed; set => maxspeed = value; }
-        public double Price { get => price; set => price = value; }
-        public int Year { get => year; set => year = value; }
-        
-
-        public Venicle(int maxspeed,int price, int year)
+        public Venicle(double price, int maxSpeed, int year, bool nonBelowZero, bool outOfMaxBorder)
         {
-            Maxspeed = maxspeed;
             Price = price;
+            MaxSpeed = maxSpeed;
             Year = year;
+            NonBelowZero = nonBelowZero;
+            OutOfMaxBorder = outOfMaxBorder;
         }
 
+        // Абстрактные методы
+        public abstract string GetType();
+        public abstract void Display();
     }
 }

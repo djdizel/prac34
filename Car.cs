@@ -7,33 +7,27 @@ using System.Threading.Tasks;
 
 namespace prac34
 {
-    class Car : Venicle
+    public class Car : Venicle
     {
-        int power;
+        public int Power { get; set; }
 
-        public int Power { get => power; set => power = value; }
-
-        public Car(int maxspeed, int price, int year, int power) : base (maxspeed,price,year)
+        public Car(double price, int maxSpeed, int year, bool nonBelowZero, bool outOfMaxBorder, int power)
+            : base(price, maxSpeed, year, nonBelowZero, outOfMaxBorder)
         {
             Power = power;
         }
-        public static Car Enter()
+
+        public override string GetType() => "Car";
+
+        public override void Display()
         {
-            Console.Clear();
-            Console.WriteLine($"Тип:Автомобиль");
-            Console.Write($"Максимальная скорость:");
-            int maxspeed = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Цена:");
-            int price = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Год выпуска:");
-            int year = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Мощность:");
-            int power = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Мощность в пределах нормы:");
-            bool OutOfMaxBorder = bool.Parse(Console.ReadLine());
-            Console.WriteLine($"Значения не отрицательные:");
-            bool NonBellowZero = bool.Parse(Console.ReadLine());
-            return new Car(maxspeed, price, year, power);
+            Console.WriteLine("Тип: Машина");
+            Console.WriteLine($"Цена: {Price}");
+            Console.WriteLine($"Максимальная скорость: {MaxSpeed}");
+            Console.WriteLine($"Год выпуска: {Year}");
+            Console.WriteLine($"Движение при t<0: {(NonBelowZero ? "Да" : "Нет")}");
+            Console.WriteLine($"Превышение габаритов: {(OutOfMaxBorder ? "Да" : "Нет")}");
+            Console.WriteLine($"Мощность: {Power}");
         }
     }
 }

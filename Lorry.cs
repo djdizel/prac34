@@ -6,34 +6,27 @@ using System.Threading.Tasks;
 
 namespace prac34
 {
-    class Lorry : Venicle
+    public class Lorry : Venicle
     {
-        int maxCapacity;
+        public double MaxCapacity { get; set; }
 
-        public int MaxCapacity { get; set; }
-
-        public Lorry(int maxspeed, int price, int year, int maxCapacity) : base(maxspeed, price, year)
+        public Lorry(double price, int maxSpeed, int year, bool nonBelowZero, bool outOfMaxBorder, double maxCapacity)
+            : base(price, maxSpeed, year, nonBelowZero, outOfMaxBorder)
         {
             MaxCapacity = maxCapacity;
         }
-        public static Lorry Enter()
-        {
-            Console.Clear();
-            Console.WriteLine($"Тип:Грузовик");
-            Console.Write($"Максимальная скорость:");
-            int maxspeed = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Цена:");
-            int price = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Год выпуска:");
-            int year = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Объем:");
-            int maxCapacity = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Мощность в пределах нормы:");
-            bool OutOfMaxBorder = bool.Parse(Console.ReadLine());
-            Console.WriteLine($"Значения не отрицательные:");
-            bool NonBellowZero = bool.Parse(Console.ReadLine());
-            return new Lorry(maxspeed, price, year, maxCapacity);
-        }
 
+        public override string GetType() => "Lorry";
+
+        public override void Display()
+        {
+            Console.WriteLine("Тип: Грузовик");
+            Console.WriteLine($"Цена: {Price}");
+            Console.WriteLine($"Максимальная скорость: {MaxSpeed}");
+            Console.WriteLine($"Год выпуска: {Year}");
+            Console.WriteLine($"Движение при t<0: {(NonBelowZero ? "Да" : "Нет")}");
+            Console.WriteLine($"Превышение габаритов: {(OutOfMaxBorder ? "Да" : "Нет")}");
+            Console.WriteLine($"Максимальная грузоподъёмность: {MaxCapacity}");
+        }
     }
 }

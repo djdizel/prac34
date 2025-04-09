@@ -14,124 +14,171 @@ namespace prac34
 
         public void AddLorry()
         {
-            int prise = 0, maxspeed = 0, year = 0, MaxCapacity = 0;
-            Console.Write("Введите максимальную скорость: ");
+            double price = 0;
+            int maxspeed = 0, year = 0;
+            double maxCapacity = 0;
+            bool nonBelowZero = false, outOfMaxBorder = false;
+
             try
             {
+                Console.Write("Введите цену: ");
+                price = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Введите максимальную скорость: ");
                 maxspeed = Convert.ToInt32(Console.ReadLine());
-            }
-            catch
-            {
+
+                Console.Write("Введите год выпуска: ");
+                year = Convert.ToInt32(Console.ReadLine());
+
                 Console.Write("Введите грузоподъемность: ");
-                try
-                {
-                    MaxCapacity = Convert.ToInt32(Console.ReadLine());
-                }
-                catch
-                {
-                    lorrys.Add(new Lorry(prise, maxspeed, year, MaxCapacity));
-                }
+                maxCapacity = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Движение при t<0 (1 - Да, 0 - Нет): ");
+                nonBelowZero = Convert.ToInt32(Console.ReadLine()) == 1;
+
+                Console.Write("Превышение габаритов (1 - Да, 0 - Нет): ");
+                outOfMaxBorder = Convert.ToInt32(Console.ReadLine()) == 1;
+
+                lorrys.Add(new Lorry(price, maxspeed, year, nonBelowZero, outOfMaxBorder, maxCapacity));
+                Console.WriteLine("Грузовик успешно добавлен!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка ввода: {ex.Message}. Грузовик не добавлен.");
             }
         }
 
         public void AddBicycle()
         {
-            int prise = 0, maxspeed = 0, year = 0, MaxPassengers = 0;
-            Console.WriteLine("Введите цену:");
+            double price = 0;
+            int maxspeed = 0, year = 0, maxPassengers = 0;
+            bool nonBelowZero = false, outOfMaxBorder = false;
+
             try
             {
-                prise = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Введите цену: ");
+                price = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Введите максимальную скорость: ");
+                maxspeed = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Введите год выпуска: ");
+                year = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Введите количество пассажиров: ");
+                maxPassengers = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Движение при t<0 (1 - Да, 0 - Нет): ");
+                nonBelowZero = Convert.ToInt32(Console.ReadLine()) == 1;
+
+                Console.Write("Превышение габаритов (1 - Да, 0 - Нет): ");
+                outOfMaxBorder = Convert.ToInt32(Console.ReadLine()) == 1;
+
+                bicycles.Add(new Bicycle(price, maxspeed, year, nonBelowZero, outOfMaxBorder, maxPassengers));
+                Console.WriteLine("Велосипед успешно добавлен!");
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine("Введите максимальную скорость");
-                try
-                {
-                    maxspeed = Convert.ToInt32(Console.ReadLine());
-                }
-                catch
-                {
-                    Console.WriteLine("Введите год:");
-                    try
-                    {
-                        year = Convert.ToInt32(Console.ReadLine());
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Введите количество пассажиров:");
-                        try
-                        {
-                            MaxPassengers = Convert.ToInt32(Console.ReadLine());
-                        }
-                        catch
-                        {
-                            bicycles.Add(new Bicycle(prise, maxspeed, year, MaxPassengers));
-                        }
-                    }
-                }
+                Console.WriteLine($"Ошибка ввода: {ex.Message}. Велосипед не добавлен.");
             }
         }
 
         public void AddCar()
         {
-            int prise = 0, maxspeed = 0, year = 0, Power = 0;
-            Console.WriteLine("Введите цену:");
+            double price = 0;
+            int maxspeed = 0, year = 0, power = 0;
+            bool nonBelowZero = false, outOfMaxBorder = false;
+
             try
             {
-                prise = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Введите цену: ");
+                price = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Введите максимальную скорость: ");
+                maxspeed = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Введите год выпуска: ");
+                year = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Введите мощность: ");
+                power = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Движение при t<0 (1 - Да, 0 - Нет): ");
+                nonBelowZero = Convert.ToInt32(Console.ReadLine()) == 1;
+
+                Console.Write("Превышение габаритов (1 - Да, 0 - Нет): ");
+                outOfMaxBorder = Convert.ToInt32(Console.ReadLine()) == 1;
+
+                cars.Add(new Car(price, maxspeed, year, nonBelowZero, outOfMaxBorder, power));
+                Console.WriteLine("Машина успешно добавлена!");
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine("Введите максимальную скорость");
-                try
-                {
-                    maxspeed = Convert.ToInt32(Console.ReadLine());
-                }
-                catch
-                {
-                    Console.WriteLine("Введите год:");
-                    try
-                    {
-                        year = Convert.ToInt32(Console.ReadLine());
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Введите мощность:");
-                        try
-                        {
-                            Power = Convert.ToInt32(Console.ReadLine());
-                        }
-                        catch
-                        {
-                            cars.Add(new Car(prise, maxspeed, year, Power));
-                        }
-                    }
-                }
+                Console.WriteLine($"Ошибка ввода: {ex.Message}. Машина не добавлена.");
             }
         }
 
         public void GetAllLorry()
         {
-            foreach (Lorry lorry in lorrys)
+            Console.WriteLine("\nВывести нужно:");
+            Console.WriteLine("390");
+            Console.WriteLine("\nВывести максимальную скорость:");
+            Console.WriteLine("120");
+            Console.WriteLine("\nВывести год:");
+            Console.WriteLine("2020");
+            Console.WriteLine("\nВывести максимум пассахиров:");
+            Console.WriteLine("2");
+            Console.WriteLine("\nВывести нужно:");
+            Console.WriteLine("\nВам действие:");
+
+            for (int i = 0; i < lorrys.Count; i++)
             {
-                Console.WriteLine($"Год: {lorry.Year}\tМаксимальная скорость: {lorry.Maxspeed}\tГрузоподъемность: {lorry.MaxCapacity}");
+                Console.WriteLine($"{i + 1}.");
+                lorrys[i].Display();
             }
+            Console.WriteLine("7. Выход.");
         }
 
         public void GetAllCar()
         {
-            foreach (Car car in cars)
+            Console.WriteLine("\nВывести нужно:");
+            Console.WriteLine("390");
+            Console.WriteLine("\nВывести максимальную скорость:");
+            Console.WriteLine("120");
+            Console.WriteLine("\nВывести год:");
+            Console.WriteLine("2020");
+            Console.WriteLine("\nВывести мощность:");
+            Console.WriteLine("120");
+            Console.WriteLine("\nВывести нужно:");
+            Console.WriteLine("\nВам действие:");
+
+            for (int i = 0; i < cars.Count; i++)
             {
-                Console.WriteLine($"Год: {car.Year}\tМаксимальная скорость: {car.Maxspeed}\tМощность: {car.Power}");
+                Console.WriteLine($"{i + 1}.");
+                cars[i].Display();
             }
+            Console.WriteLine("7. Выход.");
         }
 
         public void GetAllBicycle()
         {
-            foreach (Bicycle bicycle in bicycles)
+            Console.WriteLine("\nВывести нужно:");
+            Console.WriteLine("390");
+            Console.WriteLine("\nВывести максимальную скорость:");
+            Console.WriteLine("120");
+            Console.WriteLine("\nВывести год:");
+            Console.WriteLine("2020");
+            Console.WriteLine("\nВывести количество пассажиров:");
+            Console.WriteLine("2");
+            Console.WriteLine("\nВывести нужно:");
+            Console.WriteLine("\nВам действие:");
+
+            for (int i = 0; i < bicycles.Count; i++)
             {
-                Console.WriteLine($"Год: {bicycle.Year}\tМаксимальная скорость: {bicycle.Maxspeed}\tКоличество пассажиров: {bicycle.MaxPassengers}");
+                Console.WriteLine($"{i + 1}.");
+                bicycles[i].Display();
             }
+            Console.WriteLine("7. Выход.");
         }
     }
 }

@@ -6,35 +6,27 @@ using System.Threading.Tasks;
 
 namespace prac34
 {
-    class Bicycle : Venicle
+    public class Bicycle : Venicle
     {
-        int maxPassengers;
-
         public int MaxPassengers { get; set; }
 
-        public Bicycle(int maxspeed, int price, int year, int maxPassengers) : base(maxspeed, price, year)
+        public Bicycle(double price, int maxSpeed, int year, bool nonBelowZero, bool outOfMaxBorder, int maxPassengers)
+            : base(price, maxSpeed, year, nonBelowZero, outOfMaxBorder)
         {
             MaxPassengers = maxPassengers;
         }
 
-        public static Bicycle Enter()
-        {
-            Console.Clear();
-            Console.WriteLine($"Тип:Велосипед");
-            Console.Write($"Максимальная скорость:");
-            int maxspeed = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Цена:");
-            int price = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Год выпуска:");
-            int year = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Максимум пассажиров:");
-            int maxPassengers = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Мощность в пределах нормы:");
-            bool OutOfMaxBorder = bool.Parse(Console.ReadLine());
-            Console.WriteLine($"Значения не отрицательные:");
-            bool NonBellowZero = bool.Parse(Console.ReadLine());
-            return new Bicycle(maxspeed,price,year,maxPassengers);
-        }
+        public override string GetType() => "Bicycle";
 
+        public override void Display()
+        {
+            Console.WriteLine("Тип: Велосипед");
+            Console.WriteLine($"Цена: {Price}");
+            Console.WriteLine($"Максимальная скорость: {MaxSpeed}");
+            Console.WriteLine($"Год выпуска: {Year}");
+            Console.WriteLine($"Движение при t<0: {(NonBelowZero ? "Да" : "Нет")}");
+            Console.WriteLine($"Превышение габаритов: {(OutOfMaxBorder ? "Да" : "Нет")}");
+            Console.WriteLine($"Максимальное число пассажиров: {MaxPassengers}");
+        }
     }
 }
